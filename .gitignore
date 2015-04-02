@@ -54,3 +54,18 @@ local.properties
 .texlipse
 
 
+*.fdt
+*.xml
+*.zip
+*.fdx
+.recommenders/index/http___download_eclipse_org_recommenders_models_luna_/_0.fnm
+*.frq
+*.nrm
+*.prx
+*.tii
+*.tis
+*.gen
+.recommenders/index/http___download_eclipse_org_recommenders_models_luna_/segments_1
+*.lock
+*.repositories
+*.properties
