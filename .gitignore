@@ -71,3 +71,4 @@ local.properties
 *.properties
 *.json
 *.fnm
+.recommenders/
