@@ -22,7 +22,7 @@ public class Calculator {
 	@SuppressWarnings("resource")
 	public void scanner() {
 		Scanner sc = new Scanner(System.in);
-		if (rightAnswer == sc.nextInt()) {
+		if (sc.nextInt() == rightAnswer) {
 			System.out.println("정답입니다.");
 		} else {
 			System.out.println("정답이 아닙니다. 정답은 " + rightAnswer + " 입니다.");
