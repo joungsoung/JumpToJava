@@ -1,7 +1,5 @@
 package com.js.WeeklyPay;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.*;
 import java.text.DecimalFormat;
 
@@ -23,11 +21,7 @@ public class WeeklyPay extends JFrame {
 		frame.setSize(400, 350);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
-		
-		Dimension frameSize = frame.getSize();
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		frame.setLocation((screenSize.width - frameSize.width)/2,
-			(screenSize.height - frameSize.height)/2);
+		frame.setLocationRelativeTo(null);
 
 		JPanel panelName = new JPanel();
 		panelName.setBounds(10, 20, 200, 30);
