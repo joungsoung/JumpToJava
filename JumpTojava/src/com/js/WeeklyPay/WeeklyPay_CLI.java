@@ -1,16 +1,16 @@
-package com.js.Test;
+package com.js.WeeklyPay;
 
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
-public class WeeklyPay {
+public class WeeklyPay_CLI {
 	String name;
 	int workTime;
 	int hourly;
 	int overTime;
 	int weekly;
 	
-	public WeeklyPay(String name, int workTime, int hourly) {
+	public WeeklyPay_CLI (String name, int workTime, int hourly) {
 		this.name = name;
 		this.workTime = workTime;
 		this.hourly = hourly;
@@ -25,7 +25,7 @@ public class WeeklyPay {
 		DecimalFormat df = new DecimalFormat("#,###");	//천단위 콤마 찍기
 		return df.format(this.weekly);
 	}
-	
+
 	public static void main(String[] args) {
 		String name;
 		int workTime;
@@ -40,7 +40,7 @@ public class WeeklyPay {
 		hourly = sc.nextInt();
 		sc.close();
 		
-		WeeklyPay wp = new WeeklyPay(name, workTime, hourly);
+		WeeklyPay_CLI wp = new WeeklyPay_CLI (name, workTime, hourly);
 		System.out.println(name+"의 주급: "+wp.payMent()+"원");
 	}
 }

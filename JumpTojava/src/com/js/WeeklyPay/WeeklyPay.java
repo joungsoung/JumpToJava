@@ -2,7 +2,6 @@ package com.js.WeeklyPay;
 
 import java.awt.event.*;
 import java.text.DecimalFormat;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -12,67 +11,63 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class WeeklyPay extends JFrame {
-	JLabel labelName, labelWorkTime, labelHouly, labelWeekly, labelTotal;
-	JTextField fildName, fildWorkTime, fildHouly;
-	
+	JFrame frame = new JFrame("주급 계산기");
+	JPanel panelName = new JPanel();
+	JPanel panelWorkTime = new JPanel();
+	JPanel panelHouly = new JPanel();
+	JLabel labelName = new JLabel("         이름 : ");
+	JLabel labelWorkTime = new JLabel("근무시간 : ");
+	JLabel labelHouly = new JLabel("         시급 : ");
+	JLabel labelWeekly = new JLabel("주급 : ");
+	JLabel labelTotal = new JLabel();
+	JTextField fieldName = new JTextField(10);
+	JTextField fieldWorkTime = new JTextField(10);
+	JTextField fieldHouly = new JTextField(10);
+	JButton btn1 = new JButton("계산 (S)");
+	JButton btn2 = new JButton("초기화 (D)");
+
 	public WeeklyPay() {
-		JFrame frame = new JFrame("주급 계산기");
 		frame.setResizable(false);
-		frame.setSize(400, 350);
+		frame.setSize(400,  350);;
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLayout(null);
 		frame.setLocationRelativeTo(null);
-
-		JPanel panelName = new JPanel();
+		
 		panelName.setBounds(10, 20, 200, 30);
-		labelName = new JLabel("         이름 : ");
-		fildName = new JTextField(10);
 		panelName.add(labelName);
-		panelName.add(fildName);
+		panelName.add(fieldName);
 		
-		JPanel panelWorkTime = new JPanel();
 		panelWorkTime.setBounds(10, 60, 200, 30);
-		labelWorkTime = new JLabel("근무시간 : ");
-		fildWorkTime = new JTextField(10);
 		panelWorkTime.add(labelWorkTime);
-		panelWorkTime.add(fildWorkTime);
+		panelWorkTime.add(fieldWorkTime);
+		fieldWorkTime.addKeyListener(new FildListener());
 		
-		JPanel panelHourly = new JPanel();
-		panelHourly.setBounds(10, 100, 200, 30);
-		labelHouly = new JLabel("         시급 : ");
-		fildHouly = new JTextField(10);
-		panelHourly.add(labelHouly);
-		panelHourly.add(fildHouly);
+		panelHouly.setBounds(10, 100, 200, 30);
+		panelHouly.add(labelHouly);
+		panelHouly.add(fieldHouly);
+		fieldHouly.addKeyListener(new FildListener());
 		
-		JButton btn1 = new JButton("계산 (S)");
 		btn1.setSize(10, 10);
 		btn1.setBounds(10, 160, 160, 30);
-		btn1.setMnemonic('S');	//단축키를 Alt+ㄴ 로 설정
+		btn1.setMnemonic('S');
+		btn1.addActionListener(new BtnListener(this));
 		
-		JButton btn2 = new JButton("초기화 (D)");
 		btn2.setSize(10, 10);
 		btn2.setBounds(200, 160, 160, 30);
-		btn2.setMnemonic('D');	//단축키를 Alt+D 로 설정
+		btn2.setMnemonic('D');
+		btn2.addActionListener(new BtnListener(this));
 		
-		labelWeekly = new JLabel("주급 : ");
 		labelWeekly.setBounds(40, 230, 160, 30);
-		
-		labelTotal = new JLabel("");
 		labelTotal.setBounds(80, 230, 160, 30);
-		
+
 		frame.add(panelName);
 		frame.add(panelWorkTime);
-		frame.add(panelHourly);
+		frame.add(panelHouly);
 		frame.add(btn1);
 		frame.add(btn2);
 		frame.add(labelWeekly);
 		frame.add(labelTotal);
 		frame.setVisible(true);
-		
-		fildHouly.addKeyListener(new FildListener());
-		fildWorkTime.addKeyListener(new FildListener());	//숫자만 입력되는지 감시
-		btn1.addActionListener(new BtnListener(this));
-		btn2.addActionListener(new BtnListener(this));
 	}
 	
 	private class FildListener extends KeyAdapter {
@@ -105,8 +100,8 @@ public class WeeklyPay extends JFrame {
 			
 			try {
 				if (com.equals("계산 (S)")) {
-					workTime = Integer.parseInt(fildWorkTime.getText());
-					hourly = Integer.parseInt(fildHouly.getText());
+					workTime = Integer.parseInt(fieldWorkTime.getText());
+					hourly = Integer.parseInt(fieldHouly.getText());
 					if (workTime > 40) {
 						overTime = workTime - 40;
 						workTime = workTime - overTime;
@@ -114,11 +109,11 @@ public class WeeklyPay extends JFrame {
 					weekly = (int) ((workTime * hourly) + ((hourly * 1.5) * overTime));
 					labelTotal.setText(df.format(weekly) + "원");
 				} else if (com.equals("초기화 (D)")) {
-					fildName.setText(null);
-					fildWorkTime.setText(null);
-					fildHouly.setText(null);
+					fieldName.setText(null);
+					fieldWorkTime.setText(null);
+					fieldHouly.setText(null);
 					labelTotal.setText(null);
-					fildName.requestFocus();	//포커스를 fildName로 이동
+					fieldName.requestFocus();	//포커스를 fildName로 이동
 				}
 			} catch (NumberFormatException k) {
 				JOptionPane.showMessageDialog(
