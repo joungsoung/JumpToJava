@@ -17,7 +17,7 @@ public class Layout_GridLayout {
 	
 	public Layout_GridLayout() {
 		//GredLayout 적용
-		jFrame.setLayout(new GridLayout(0, 1));
+		jFrame.setLayout(new GridLayout(3, 2));
 		//컴퍼넌트를 넣을 컨테이너 구하기
 		Container container = jFrame.getContentPane();
 		
