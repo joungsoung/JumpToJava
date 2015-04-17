@@ -7,6 +7,7 @@ import java.io.FileWriter;
 public class OutFile3 {
 	public static void main(String[] args) throws IOException {
 		String data;
+		
 		PrintWriter pw = new PrintWriter("d:/Donot/workspace/PrintWriter.txt");
 		data = "Hello world";
 		pw.println(data);
