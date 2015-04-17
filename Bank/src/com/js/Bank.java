@@ -4,10 +4,10 @@ import javax.swing.JOptionPane;
 
 public class Bank {
 
-	private int ภÜพื = 0;
+	private int ภÜพื = 1000;
 
-	public int getภÜพื() {
-		return ภÜพื;
+	public void getภÜพื() {
+		JOptionPane.showMessageDialog(null, "ภÜพื : " + ภÜพื + "ฟ๘");
 	}
 
 	public void ภิฑÝ(int ฑÝพื) {
