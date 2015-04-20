@@ -10,19 +10,19 @@ public class BankMain {
 	Bank bnk = new Bank();
 
 	public void inputBox() {
-		String var1 = JOptionPane.showInputDialog(null, "name을 적어주세요");
+		String var1 = JOptionPane.showInputDialog(null, "이름 을 적어주세요");
 		
 		if (var1.equals("")) {
-			JOptionPane.showMessageDialog(null, "choice오류");
+			JOptionPane.showMessageDialog(null, "선택오류");
 			return;
 		}
 		this.name = var1;
 		
-		String var = JOptionPane.showInputDialog(null, "작업 choice\n"
+		String var = JOptionPane.showInputDialog(null, "작업 선택\n"
 				+ "1)입금    2)출금    3)잔액확인");
 
 		if (var.equals("") || !var.equals("1") && !var.equalsIgnoreCase("2") && !var.equals("3")) {
-			JOptionPane.showMessageDialog(null, "choice오류");
+			JOptionPane.showMessageDialog(null, "선택오류");
 			return;
 		}
 		this.choice = var;
@@ -33,7 +33,7 @@ public class BankMain {
 		}
 
 		String var2 = JOptionPane.showInputDialog(null,
-				"입/출금 할 money을 입력하세요 (숫자만 입력하세요)\n" + "1000 (O)     1,000 (X)");
+				"입/출금 할 금액을 입력하세요 (숫자만 입력하세요)\n" + "1000 (O)     1,000 (X)");
 
 		try {
 			money = Integer.parseInt(var2);

@@ -14,7 +14,7 @@ public class Bank {
 		this.name = name;
 		this.balance = bkw.select(name);
 
-		JOptionPane.showMessageDialog(null, name + "님 의 balance : " + balance + "원");
+		JOptionPane.showMessageDialog(null, name + "님 의 잔액 : " + balance + "원");
 	}
 
 	public void deposit(String name, String choice, int money) {
@@ -22,9 +22,9 @@ public class Bank {
 		this.balance = bkw.select(name);
 		bkw.insert(name, choice, money);
 		
-		JOptionPane.showMessageDialog(null, "전balance : " + balance + "\n"
-				+ "입money : " + money +"\n"
-						+ "최종money : " + (balance+money) + "\n"
+		JOptionPane.showMessageDialog(null, "전잔액 : " + balance + "\n"
+				+ "입금액 : " + money +"\n"
+						+ "최종잔액 : " + (balance+money) + "\n"
 								+ "입금처리가 완료됬습니다.");
 	}
 
@@ -32,33 +32,16 @@ public class Bank {
 		this.balance = bkw.select(name);
 		
 		if (balance < money) {
-			JOptionPane.showMessageDialog(null, "거래 오류     \"balance부족\"");
+			JOptionPane.showMessageDialog(null, "거래 오류     \"잔액부족\"");
 			System.exit(0);
 		}
 		this.name = name;
 		bkw.insert(name, choice, money);
 		
-		JOptionPane.showMessageDialog(null, "전balance : " + balance + "\n"
-				+ "출money : " + money +"\n"
-						+ "최종money : " + (balance-money) + "\n"
+		JOptionPane.showMessageDialog(null, "전잔액 : " + balance + "\n"
+				+ "출금액 : " + money +"\n"
+						+ "최종자액 : " + (balance-money) + "\n"
 								+ "출금처리가 완료됬습니다.");
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
