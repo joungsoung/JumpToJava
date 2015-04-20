@@ -4,31 +4,46 @@ import javax.swing.JOptionPane;
 
 public class Bank {
 
-	private int 잔액 = 1000;
+	@SuppressWarnings("unused")
+	private String name;
+	int balance;
+	
+	BankDBWriter bkw = new BankDBWriter();
 
-	public void get잔액() {
-		JOptionPane.showMessageDialog(null, "잔액 : " + 잔액 + "원");
+	public void getbalance(String name) {
+		this.name = name;
+		this.balance = bkw.select(name);
+
+		JOptionPane.showMessageDialog(null, name + "님 의 balance : " + balance + "원");
 	}
 
-	public void 입금(int 금액) {
-		this.잔액 += 금액;
-		JOptionPane.showMessageDialog(null, "전잔액 : " + (잔액-금액) + "\n"
-				+ "입금액 : " + 금액 +"\n"
-						+ "최종금액 : " + 잔액 + "\n"
+	public void deposit(String name, String choice, int money) {
+		this.name = name;
+		this.balance = bkw.select(name);
+		bkw.insert(name, choice, money);
+		
+		JOptionPane.showMessageDialog(null, "전balance : " + balance + "\n"
+				+ "입money : " + money +"\n"
+						+ "최종money : " + (balance+money) + "\n"
 								+ "입금처리가 완료됬습니다.");
 	}
 
-	public void 출금(int 금액) {
-		if (잔액 < 금액) {
-			JOptionPane.showMessageDialog(null, "거래 오류     \"잔액부족\"");
+	public void withdrawa(String name, String choice, int money) {
+		this.balance = bkw.select(name);
+		
+		if (balance < money) {
+			JOptionPane.showMessageDialog(null, "거래 오류     \"balance부족\"");
 			System.exit(0);
 		}
-		this.잔액 -= 금액;
-		JOptionPane.showMessageDialog(null, "전잔액 : " + (잔액+금액) + "\n"
-				+ "출금액 : " + 금액 +"\n"
-						+ "최종금액 : " + 잔액 + "\n"
+		this.name = name;
+		bkw.insert(name, choice, money);
+		
+		JOptionPane.showMessageDialog(null, "전balance : " + balance + "\n"
+				+ "출money : " + money +"\n"
+						+ "최종money : " + (balance-money) + "\n"
 								+ "출금처리가 완료됬습니다.");
 	}
+
 }
 
 
