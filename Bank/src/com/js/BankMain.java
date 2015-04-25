@@ -41,7 +41,12 @@ public class BankMain {
 			JOptionPane.showMessageDialog(null, "입력오류");
 			return;
 		}
-		go.relays(name, choice, money);
+		//go.relays(name, choice, money);
+		if (choice.equals("1")) {
+			bnk.deposit(name, choice, money);
+		} else if (choice.equals("2")) {
+			bnk.withdrawa(name, choice, money);
+		}
 	}
 	
 	public static void main(String[] args) {

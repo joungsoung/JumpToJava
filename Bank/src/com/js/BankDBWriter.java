@@ -12,9 +12,9 @@ import java.util.Locale;
 
 public class BankDBWriter {
 	Connection con = null;
-	Statement stmt;
-	PreparedStatement pstmt;
-	ResultSet result;
+	Statement stmt = null;
+	PreparedStatement pstmt = null;
+	ResultSet result = null;
 
 	private int balance;
 	private int newBalance;
@@ -23,8 +23,8 @@ public class BankDBWriter {
 	private String url = "jdbc:mysql://192.168.0.66:3306/bank";
 	private String id = "bank";
 	private String pw = "1234";
-	String today;
-	String time;
+	private String today;
+	private String time;
 	
 	public void getDateTime() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
@@ -38,7 +38,7 @@ public class BankDBWriter {
 	
 	public int select(String name) {
 		this.name = name;
-		String select = "SELECT balance FROM history WHERE name='" + name + "' ORDER BY no DESC LIMIT 1";
+		String sql = "SELECT balance FROM history WHERE name='" + name + "' ORDER BY no DESC LIMIT 1";
 		
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -48,15 +48,18 @@ public class BankDBWriter {
 		try {
 			con = DriverManager.getConnection(url, id, pw);
 			stmt = con.createStatement();
-			result = stmt.executeQuery(select);
+			result = stmt.executeQuery(sql);
 			
 			while(result.next()) {
 				balance = result.getInt("balance");
 			}
-			con.close();
-			stmt.close();
+
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+		} finally {
+			if (result != null) try {result.close();} catch(SQLException e) {}
+			if (stmt != null) try {stmt.close();} catch(SQLException e) {}
+			if (con != null) try {con.close();} catch(SQLException e) {}
 		}
 		return balance;
 	}
@@ -102,6 +105,9 @@ public class BankDBWriter {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
+		} finally {
+			if (stmt != null) try {stmt.close();} catch(SQLException e) {}
+			if (con != null) try {con.close();} catch(SQLException e) {}
 		}
 		return newBalance;
 	}
